@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        /* Reset margins and paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            width: 100%;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar button {
+            background: none;
+            border: none;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Change color on hover */
+        .navbar button:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Highlights the current active tab */
+        .navbar button.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        /* Container ensures the image stays perfectly centered */
+        .image-container {
+            width: 100%;
+            max-width: 100%; 
+            text-align: center;
+        }
+
+        /* Displays your images exactly as they are */
+        .full-page-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Floating Button Styles */
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, background-color 0.3s;
+            z-index: 1000; /* Ensures it stays on top of the image */
+        }
+
+        .floating-btn:hover {
+            background-color: #038d5a;
+            transform: scale(1.05); /* Slight pop effect on hover */
+        }
+
+        .floating-btn:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <button onclick="changeImage('home.png', this)" class="active">Home</button>
+        <button id="openings-btn" onclick="changeImage('openings.png', this)">Openings</button>
+        <button onclick="changeImage('job-details.png', this)">Job details</button>
+        <button onclick="changeImage('employers.png', this)">Employers</button>
+        <button id="contact-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeh1mMiSfPrL_j98CSs9kE5oBHOFsANE1ueQ5vGYp7Z10_whw/viewform?usp=header', '_blank')">Contact</button>
+    </nav>
+
+    <div class="image-container">
+        <img id="display-image" src="home.png" alt="Home Page" class="full-page-image">
+    </div>
+
+    <button class="floating-btn" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSeh1mMiSfPrL_j98CSs9kE5oBHOFsANE1ueQ5vGYp7Z10_whw/viewform?usp=header', '_blank')">
+        Discover Openings
+    </button>
+
+    <script>
+        function changeImage(imageSrc, buttonElement) {
+            // Swap the image source
+            document.getElementById('display-image').src = imageSrc;
+            
+            // Remove 'active' class from all buttons
+            const buttons = document.querySelectorAll('.navbar button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add 'active' class to the clicked button if it exists
+            if (buttonElement) {
+                buttonElement.classList.add('active');
+            }
+        }
+    </script>
+
+</body>
+</html>
